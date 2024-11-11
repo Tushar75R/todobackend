@@ -25,6 +25,7 @@ app.get("/", (req, res) => {
 app.use("/api", route);
 
 app.use(errorMiddleware);
+app.get("/", (req, res) => res.send("Hello from Server"));
 app.listen(process.env.PORT || 3100, () => {
   console.log(`Server running on port ${process.env.PORT || 3100}`);
 });
