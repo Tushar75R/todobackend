@@ -1,6 +1,6 @@
 import { ErrorHandler } from "../util/ErrorHandler.js";
 import { User } from "../model/User.js";
-import { compare } from "bcrypt";
+import bcrypt from "bcryptjs";
 import jwt from "jsonwebtoken";
 import { Task } from "../model/Task.js";
 
@@ -42,7 +42,7 @@ const login = async (req, res, next) => {
     if (!user) {
       return next(ErrorHandler("user not found", 404));
     }
-    const isMatch = await compare(password, user.password);
+    const isMatch = await bcrypt.compare(password, user.password);
     console.log(isMatch);
     if (!isMatch) {
       return next(ErrorHandler("invalid credentials", 401));
