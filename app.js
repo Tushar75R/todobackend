@@ -15,6 +15,7 @@ const corsOption = {
   credentials: true,
   methods: ["GET", "POST", "PUT", "DELETE"],
 };
+console.log("corsOption : - >", corsOption);
 app.use(cors(corsOption));
 app.use(express.json());
 app.use(cookieParser());
