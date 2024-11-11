@@ -19,10 +19,11 @@ const register = async (req, res, next) => {
     if (existingUser) {
       return next(ErrorHandler("user already exists", 400));
     }
+    console.log("register here -> ", name, password);
     const user = await User.create({ name, password, task: [] });
     user.save();
     const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET);
-
+    console.log("register here -> ", token);
     return res.status(201).cookie("token", token, cookieOption).json({
       sucess: true,
       message: "user registered successfully",
